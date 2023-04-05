@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/employee")
@@ -13,7 +13,7 @@ public class EmployeeController {
     private final EmployeeService service = new EmployeeService();
 
     @GetMapping
-    public List<Employee> AllEmployees() {
+    public Map<Employee, Object> AllEmployees() {
         return service.AllEmployees();
     }
     @GetMapping("/add")
