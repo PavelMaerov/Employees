@@ -23,8 +23,8 @@ public class EmployeeService {
     }
 
     //1. Добавить сотрудника.
-    public Employee add(String firstName, String lastName) {
-        Employee e = new Employee(firstName, lastName);
+    public Employee add(String firstName, String lastName, byte department, int salary) {
+        Employee e = new Employee(firstName, lastName, department, salary);
         String key = key(firstName, lastName);
         if (employeeBook.containsKey(key)) {
             throw new EmployeeAlreadyAddedException();
