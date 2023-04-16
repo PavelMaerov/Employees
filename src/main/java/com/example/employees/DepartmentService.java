@@ -9,11 +9,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class DepartmentService {
-    private final EmployeeService employeeService;
-
-    public DepartmentService(EmployeeService employeeService) {
-        this.employeeService = employeeService;
-    }
+    private final EmployeeService employeeService = new EmployeeService();
 
     public Employee employeeMinSalaryForDepartment(byte department) {
         return employeeService.AllEmployees().stream()
