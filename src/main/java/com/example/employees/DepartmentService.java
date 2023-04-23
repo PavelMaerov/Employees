@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -17,24 +18,28 @@ public class DepartmentService {
 
     public Employee employeeMinSalaryForDepartment(byte department) {
         return employeeService.AllEmployees().stream()
-                .filter(e -> e.getDepartment()==department)
+                .filter(e -> e.getDepartment() == department)
                 .min(Comparator.comparingInt(e -> e.getSalary()))
-                .orElseThrow(()->new EmployeeNotFoundException());
+                .orElseThrow(() -> new EmployeeNotFoundException());
     }
+
     public Employee employeeMaxSalaryForDepartment(byte department) {
         return employeeService.AllEmployees().stream()
-                .filter(e -> e.getDepartment()==department)
+                .filter(e -> e.getDepartment() == department)
                 .max(Comparator.comparingInt(e -> e.getSalary()))
-                .orElseThrow(()->new EmployeeNotFoundException());
+                .orElseThrow(() -> new EmployeeNotFoundException());
     }
+
     public Collection<Employee> AllEmployeesOfDepartment(byte department) {
         return employeeService.AllEmployees().stream()
-                .filter(e -> e.getDepartment()==department)
+                .filter(e -> e.getDepartment() == department)
                 .collect(Collectors.toList());
     }
-    public Collection<Employee> AllEmployeesByDepartment() {
+
+    public Map<Byte, Collection<Employee>> AllEmployeesByDepartment() {
         return employeeService.AllEmployees().stream()
-                .sorted(Comparator.comparingInt(Employee::getDepartment))  //для разнообразия - без лямбды
-                .collect(Collectors.toList());
+                .map(e -> e.getDepartment())
+                .distinct()
+                .collect(Collectors.toMap(e -> e, e -> AllEmployeesOfDepartment(e)));
     }
 }

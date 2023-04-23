@@ -14,7 +14,8 @@ http://localhost:8080/employee/find?firstName=Ivan
 ###
 http://localhost:8080/department/all
 ###
-http://localhost:8080/department/all?department=2
+http://localhost:8080/department/min-salary?department=2
 ###
 http://localhost:8080/department/max-salary?department=2
-
+###
+http://localhost:8080/department/all?department=2
