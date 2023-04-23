@@ -6,11 +6,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/department")
 class DepartmentController {
-    private final DepartmentService departmentService = new DepartmentService();
+    public DepartmentController(DepartmentService departmentService) {
+        this.departmentService = departmentService;
+    }
+
+    private final DepartmentService departmentService;
 
     @GetMapping("/min-salary")
     public Employee employeeMinSalaryForDepartment(@RequestParam byte department) {
@@ -28,7 +33,7 @@ class DepartmentController {
     }
 
     @GetMapping("/all")
-    public Collection<Employee> AllEmployeesByDepartment() {
+    public Map<Byte, Collection<Employee>> AllEmployeesByDepartment() {
         return departmentService.AllEmployeesByDepartment();
     }
 }
