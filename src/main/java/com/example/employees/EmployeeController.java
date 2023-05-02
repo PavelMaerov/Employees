@@ -1,10 +1,6 @@
 package com.example.employees;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RestController
@@ -37,4 +33,14 @@ public class EmployeeController {
                          @RequestParam String lastName) {
         return employeeService.find(firstName,lastName);
     }
+
+    /*
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(EmployeeIncorrectNameException.class)
+    public Exception incorrectNameExceptionHandler(EmployeeIncorrectNameException e) {
+        //return e.getMessage(); Так возвращается слишком мало, только сообщение
+        //return e; Так возвращается слишком много - stackTrace
+        //как сохранить структуру возврата по умолчанию, но со своим сообщением - не разобрался
+    }
+    */
  }

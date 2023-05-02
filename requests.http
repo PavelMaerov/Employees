@@ -2,9 +2,9 @@ http://localhost:8080/employee
 ###
 http://localhost:8080/employee/add?firstName=Ivan
 ###
-http://localhost:8080/employee/add?firstName=Ivan&lastName=Ivanov2&department=2&salary=1000
+http://localhost:8080/employee/add?firstName=Ivan&lastName=Ivanov&department=2&salary=1000
 ###
-http://localhost:8080/employee/add?firstName=Ivan&lastName=Ivanov3&department=2&salary=2000
+http://localhost:8080/employee/add?firstName=iVan&lastName=иВАНОВ&department=2&salary=2000
 ###
 http://localhost:8080/employee/add?firstName=Ivan&lastName=Ivanov4&department=3&salary=1500
 ###
