@@ -1,8 +1,10 @@
 package com.example.employees;
 
 import com.example.employees.exceptions.EmployeeAlreadyAddedException;
+import com.example.employees.exceptions.EmployeeIncorrectNameException;
 import com.example.employees.exceptions.EmployeeNotFoundException;
 import com.example.employees.exceptions.EmployeeStorageIsFullException;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -24,6 +26,11 @@ public class EmployeeService {
 
     //1. Добавить сотрудника.
     public Employee add(String firstName, String lastName, byte department, int salary) {
+        if (!StringUtils.isAlpha(firstName) || !StringUtils.isAlpha(lastName)) {
+            throw new EmployeeIncorrectNameException();
+        }
+        firstName = StringUtils.capitalize(firstName.toLowerCase());
+        lastName = StringUtils.capitalize(lastName.toLowerCase());
         Employee e = new Employee(firstName, lastName, department, salary);
         String key = key(firstName, lastName);
         if (employeeBook.containsKey(key)) {
