@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -28,12 +28,12 @@ class DepartmentController {
     }
 
     @GetMapping(value = "/all", params = {"department"})
-    public Collection<Employee> AllEmployeesOfDepartment(@RequestParam byte department) {
+    public List<Employee> AllEmployeesOfDepartment(@RequestParam byte department) {
         return departmentService.AllEmployeesOfDepartment(department);
     }
 
     @GetMapping("/all")
-    public Map<Byte, Collection<Employee>> AllEmployeesByDepartment() {
+    public Map<Byte, List<Employee>> AllEmployeesByDepartment() {
         return departmentService.AllEmployeesByDepartment();
     }
 }

@@ -2,7 +2,7 @@ package com.example.employees;
 
 import java.util.Objects;
 
-public class Employee {
+public class Employee implements Comparable<Employee>{
     private String firstName;
     private String lastName;
     private byte department;
@@ -28,10 +28,13 @@ public class Employee {
     public int getSalary() {
         return salary;
     }
+    public void setSalary(int salary) {
+        this.salary=salary;
+    }
 
     @Override
     public String toString() {
-        return "Работник " + firstName + " " + lastName;
+        return "Работник " + firstName + " " + lastName + ", отдел " + department + ", зп " + salary;
     }
 
     @Override
@@ -39,12 +42,18 @@ public class Employee {
         if (this == o) return true;
         if (!(o instanceof Employee)) return false;
         Employee employee = (Employee) o;
-        return firstName.equals(employee.firstName) && lastName.equals(employee.lastName);
+        return firstName.equals(employee.firstName) && lastName.equals(employee.lastName) &&
+                department == employee.department && salary == employee.salary;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName);
+        return Objects.hash(firstName, lastName, department, salary);
+    }
+
+    @Override
+    public int compareTo(Employee o) {
+        return (lastName+" "+firstName).compareTo(o.getLastName()+" "+o.getFirstName());
     }
 
 }
