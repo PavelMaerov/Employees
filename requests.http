@@ -19,3 +19,6 @@ http://localhost:8080/department/min-salary?department=2
 http://localhost:8080/department/max-salary?department=2
 ###
 http://localhost:8080/department/all?department=2
+###
+
+
